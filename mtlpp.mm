@@ -1345,8 +1345,8 @@ namespace mtlpp
         Validate();
 
         // Error
-        NSError* nsError = NULL;
-        NSError** nsErrorPtr = error ? &nsError : nullptr;
+        NSError* __autoreleasing nsError = NULL;
+        NSError* __autoreleasing * nsErrorPtr = error ? &nsError : nullptr;
 
         id<MTLLibrary> library = [(__bridge id<MTLDevice>)m_ptr newLibraryWithFile:(__bridge NSString*)filepath.GetPtr() error:nsErrorPtr];
 
@@ -1364,8 +1364,8 @@ namespace mtlpp
         NSString* nsSource = [NSString stringWithUTF8String:source];
         
         // Error
-        NSError* nsError = NULL;
-        NSError** nsErrorPtr = error ? &nsError : nullptr;
+        NSError* __autoreleasing nsError = NULL;
+        NSError* __autoreleasing * nsErrorPtr = error ? &nsError : nullptr;
 
         id<MTLLibrary> library = [(__bridge id<MTLDevice>)m_ptr newLibraryWithSource:nsSource
                                                                              options:(__bridge MTLCompileOptions*)options.GetPtr()
@@ -1397,8 +1397,8 @@ namespace mtlpp
         Validate();
 
         // Error
-        NSError* nsError = NULL;
-        NSError** nsErrorPtr = error ? &nsError : nullptr;
+        NSError* __autoreleasing nsError = NULL;
+        NSError* __autoreleasing * nsErrorPtr = error ? &nsError : nullptr;
 
         id<MTLRenderPipelineState> renderPipelineState = [(__bridge id<MTLDevice>)m_ptr newRenderPipelineStateWithDescriptor:(__bridge MTLRenderPipelineDescriptor*)descriptor.GetPtr()
                                                                                                                        error:nsErrorPtr];
@@ -1416,12 +1416,12 @@ namespace mtlpp
         Validate();
         
         // Error
-        NSError* nsError = NULL;
-        NSError** nsErrorPtr = error ? &nsError : nullptr;
+        NSError* __autoreleasing nsError = NULL;
+        NSError* __autoreleasing * nsErrorPtr = error ? &nsError : nullptr;
 
         // Reflection
-        MTLRenderPipelineReflection* reflection = NULL;
-        MTLRenderPipelineReflection** reflectionPtr = outReflection ? &reflection : nullptr;
+        MTLRenderPipelineReflection* __autoreleasing reflection = NULL;
+        MTLRenderPipelineReflection* __autoreleasing * reflectionPtr = outReflection ? &reflection : nullptr;
 
         id<MTLRenderPipelineState> renderPipelineState = [(__bridge id<MTLDevice>)m_ptr newRenderPipelineStateWithDescriptor:(__bridge MTLRenderPipelineDescriptor*)descriptor.GetPtr()
                                                                                                                      options:MTLPipelineOption(options)
@@ -1471,8 +1471,8 @@ namespace mtlpp
         Validate();
         
         // Error
-        NSError* nsError = NULL;
-        NSError** nsErrorPtr = error ? &nsError : nullptr;
+        NSError* __autoreleasing nsError = NULL;
+        NSError* __autoreleasing * nsErrorPtr = error ? &nsError : nullptr;
 
         id<MTLComputePipelineState> state = [(__bridge id<MTLDevice>)m_ptr newComputePipelineStateWithFunction:(__bridge id<MTLFunction>)computeFunction.GetPtr()
                                                                                                          error:nsErrorPtr];
@@ -1522,12 +1522,12 @@ namespace mtlpp
         Validate();
 #if MTLPP_IS_AVAILABLE(10_11, 9_0)
         // Error
-        NSError* nsError = NULL;
-        NSError** nsErrorPtr = error ? &nsError : nullptr;
+        NSError* __autoreleasing nsError = NULL;
+        NSError* __autoreleasing * nsErrorPtr = error ? &nsError : nullptr;
 
         // Reflection
-        MTLComputePipelineReflection* reflection = NULL;
-        MTLComputePipelineReflection** reflectionPtr = outReflection ? &reflection : nullptr;
+        MTLComputePipelineReflection* __autoreleasing reflection = NULL;
+        MTLComputePipelineReflection* __autoreleasing * reflectionPtr = outReflection ? &reflection : nullptr;
 
         id<MTLComputePipelineState> state = [(__bridge id<MTLDevice>)m_ptr newComputePipelineStateWithDescriptor:(__bridge MTLComputePipelineDescriptor*)descriptor.GetPtr()
                                                                                                          options:MTLPipelineOption(options)
@@ -2282,8 +2282,8 @@ namespace mtlpp
         Validate();
 #if MTLPP_IS_AVAILABLE(10_12, 10_0)
         // Error
-        NSError* nsError = NULL;
-        NSError** nsErrorPtr = error ? &nsError : nullptr;
+        NSError* __autoreleasing nsError = NULL;
+        NSError* __autoreleasing * nsErrorPtr = error ? &nsError : nullptr;
 
         id<MTLFunction> function = [(__bridge id<MTLLibrary>)m_ptr newFunctionWithName:(__bridge NSString*)functionName.GetPtr()
                                                                         constantValues:(__bridge MTLFunctionConstantValues*)constantValues.GetPtr()
@@ -2420,7 +2420,7 @@ namespace ns
     }
 
     Error::Error() :
-        Object(Handle{ (__bridge void*) nil })
+        Object(Handle{ nil })
     {
 
     }
